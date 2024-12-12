@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  postgres:
+    image: postgres:latest
+    container_name: custom_postgres_container
+    environment:
+      POSTGRES_DB: custom_database_name
+      POSTGRES_USER: custom_user
+      POSTGRES_PASSWORD: custom_password123
+    volumes:
+      - custom_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "6543:5432"  # Changed the port mapping (host:container)
+    restart: unless-stopped
+
+  pgadmin:
+    image: dpage/pgadmin4:latest
+    container_name: custom_pgadmin_container
+    environment:
+      PGADMIN_DEFAULT_EMAIL: custom_admin@example.com
+      PGADMIN_DEFAULT_PASSWORD: custom_pgadmin_password
+    ports:
+      - "8080:80"  # Changed the port mapping (host:container)
+    depends_on:
+      - postgres
+    restart: unless-stopped
+
+volumes:
+  custom_postgres_data:
