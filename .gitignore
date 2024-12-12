@@ -25,5 +25,5 @@
 go.work
 
 *.solid_principle.go
-
+hell_test.go
 # End of https://www.toptal.com/developers/gitignore/api/go
